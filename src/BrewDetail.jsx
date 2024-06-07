@@ -4,7 +4,7 @@ export const BrewDetail = ({ brew, onClose }) => {
   console.log("BREW", brew)
   return (
     <div
-      className={`h-[100vh] w-full z-10 fixed top-0 left-0 p-6 bg-gradient-to-r ${brew.colors[0]} ${brew.colors[1]}`}
+      className={`h-[100vh] w-full z-10 fixed top-0 left-0 p-12 bg-gradient-to-r ${brew.colors[0]} ${brew.colors[1]}`}
     >
       <div className="h-full w-full dark:bg-[#242424] bg-[seashell] relative p-16">
         <p className="text-large">{brew.name}</p>
@@ -27,7 +27,7 @@ export const BrewDetail = ({ brew, onClose }) => {
           })}
         </p>
         <p className="text-[0.9rem] mt-12 px-12">
-          Brews Available: {brew.available_count || "TBD"}
+          Total Brews Made: {brew.available_count + " ct" || "TBD"}
         </p>
         {/* </div> */}
         <button
