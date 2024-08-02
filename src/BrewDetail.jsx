@@ -4,7 +4,7 @@ export const BrewDetail = ({ brew, onClose }) => {
   console.log("BREW", brew)
   return (
     <div
-      className={`h-[100vh] w-full z-10 fixed top-0 left-0 p-12 bg-gradient-to-r ${brew.colors[0]} ${brew.colors[1]}`}
+      className={`h-full max-w-[400px] w-full z-10 p-12 mx-auto bg-gradient-to-r ${brew.colors[0]} ${brew.colors[1]}`}
     >
       <div className="h-full w-full dark:bg-[#242424] bg-[seashell] relative p-16">
         <p className="text-large">{brew.name}</p>

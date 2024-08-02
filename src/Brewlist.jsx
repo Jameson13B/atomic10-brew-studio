@@ -6,47 +6,84 @@ export const BrewList = () => {
 
   return (
     <div
-      className={`py-[40px] h-[100vh] ${
+      className={`h-[calc(95%-40px)] ${
         currentBrew ? "overflow-hidden" : "overflow-auto"
       }`}
     >
-      {brews.map((brew) => {
-        const [start = "", finish = ""] = brew.colors
-        const rowStyles = `opacity-90 bg-gradient-to-r ${start} ${finish} rounded-md p-12 mb-16 cursor-pointer`
-
-        return (
-          <div
-            className={rowStyles}
-            key={brew.id}
-            onClick={() => setCurrentBrew(brew)}
-          >
-            <p className="text-medium dark:text-[#213547]">{brew.name}</p>
-
-            <p className="text-small mb-[4px] dark:text-[#213547]">
-              Status: {brew.status}
-            </p>
-            <p className="text-small mb-[8px] dark:text-[#213547]">
-              Pouring:{" "}
-              {brew.estimated_release.toLocaleDateString("en-US", {
-                month: "long",
-                day: "numeric",
-                weekday: "short",
-              })}{" "}
-              | Est ABV: {brew.estimated_abv}
-            </p>
-            {/* <hr className="mx-16 my-6" /> */}
-            <p className="text-small rounded-md bg-opacity-50 bg-[seashell] p-6 dark:text-[#213547]">
-              {brew.description}
-            </p>
-            <p className="text-small mt-6 dark:text-[#213547]">
-              Brewed by: {brew.brewed_by}
-            </p>
-          </div>
-        )
-      })}
-
-      {currentBrew && (
+      {currentBrew ? (
         <BrewDetail brew={currentBrew} onClose={() => setCurrentBrew(null)} />
+      ) : (
+        brews
+          .sort((a, b) => {
+            if (a.status === STATUSES.GONE && b.status !== STATUSES.GONE) {
+              return 1
+            } else if (
+              a.status !== STATUSES.GONE &&
+              b.status === STATUSES.GONE
+            ) {
+              return -1
+            } else {
+              return 0
+            }
+          })
+          .map((brew) => {
+            const [start = "", finish = ""] = brew.colors
+            const rowStyles = `opacity-90 bg-gradient-to-r ${start} ${finish} rounded-md p-12 mb-16 cursor-pointer relative`
+
+            return (
+              <div
+                className={rowStyles}
+                key={brew.id}
+                onClick={() => setCurrentBrew(brew)}
+              >
+                <p className="text-medium dark:text-[#213547]">{brew.name}</p>
+
+                <p className="text-small mb-[4px] dark:text-[#213547]">
+                  Status: {brew.status}
+                </p>
+                <p className="text-small mb-[8px] dark:text-[#213547]">
+                  Pouring:{" "}
+                  {brew.estimated_release.toLocaleDateString("en-US", {
+                    month: "long",
+                    day: "numeric",
+                    weekday: "short",
+                  })}{" "}
+                  |{" "}
+                  {[
+                    STATUSES.CONCEPT,
+                    STATUSES.PLANNING,
+                    STATUSES.BREWING,
+                  ].includes(brew.status) && "Est "}
+                  ABV: {brew.estimated_abv}
+                </p>
+                {/* <hr className="mx-16 my-6" /> */}
+                <p className="text-small rounded-md bg-opacity-50 bg-[seashell] p-6 dark:text-[#213547]">
+                  {brew.description}
+                </p>
+                <p className="text-small mt-6 dark:text-[#213547]">
+                  Brewed by: {brew.brewed_by}
+                </p>
+                {[STATUSES.GONE, STATUSES.KEGGED].includes(brew.status) && (
+                  <>
+                    {brew.status === STATUSES.GONE ? (
+                      <p className="absolute top-[24px] right-[6px] rotate-[40deg] text-small dark:text-[#213547] [text-shadow:_1.5px_1.5px_0_rgb(256_256_256_/_50%)]">
+                        ALL GONE
+                      </p>
+                    ) : (
+                      <p className="absolute top-[28px] right-0 rotate-[35deg] text-small dark:text-[#213547] [text-shadow:_1.5px_1.5px_0_rgb(256_256_256_/_50%)]">
+                        GRAB A GLASS
+                      </p>
+                    )}
+                    {brew.status === STATUSES.GONE && (
+                      <p className="absolute top-[24px] left-[6px] -rotate-[40deg] text-small dark:text-[#213547] [text-shadow:_1.5px_1.5px_0_rgb(256_256_256_/_50%)]">
+                        ALL GONE
+                      </p>
+                    )}
+                  </>
+                )}
+              </div>
+            )
+          })
       )}
     </div>
   )
@@ -57,7 +94,7 @@ const STATUSES = {
   PLANNING: "PLANNING",
   BREWING: "BREWING",
   KEGGED: "KEGGED",
-  SOLDOUT: "SOLD OUT",
+  GONE: "GONE",
 }
 
 const brews = [
@@ -69,7 +106,7 @@ const brews = [
     colors: ["from-[#eb8bb9]", "to-[#ed975a]"],
     brewed_by: "Atomic10 Studios + Barely Fiction Exp",
     available_count: "10",
-    status: STATUSES.KEGGED,
+    status: STATUSES.GONE,
     description:
       "Indulge in the delightful essence of summer with our Peach Cobbler Seltzer. This beverage captures the sweet, juicy flavor of ripe peaches perfectly balanced with a hint of creamy vanilla, reminiscent of the classic dessert.",
     event_details:
@@ -77,31 +114,31 @@ const brews = [
   },
   {
     id: 2,
-    name: "Passionfruit Cider",
-    estimated_release: new Date("June 22, 2024"),
-    estimated_abv: "6%",
-    colors: ["from-[#b000b5]", "to-[#bada55]"],
-    brewed_by: "Atomic10 Studios + Barely Fiction Exp",
-    available_count: "10",
-    status: STATUSES.BREWING,
-    description:
-      "Experience the tropical allure of our Passionfruit Cider. A vibrant and tantalizing beverage that brings an exotic twist to the traditional cider. Bursting with the tangy, aromatic flavor of passionfruit, this cider offers a refreshing bite balanced by the natural sweetness of crisp apples.",
-    event_details:
-      "Come on a tropical getaway and try our Passionfruit Cider. It's just as good as it sounds and goes great with our island reggae playlist. Bring your sun kissed date, coconut scented sunscreen, and fantasize about the perfect exotic vacation.",
-  },
-  {
-    id: 3,
     name: "Ghastly Grape Soda",
     estimated_release: new Date("June 29, 2024"),
     estimated_abv: "5.2%",
     colors: ["from-[#ecdbf8]", "to-[#8359a3]"],
     brewed_by: "Atomic10 Studios + Barely Fiction Exp",
     available_count: "10",
-    status: STATUSES.PLANNING,
+    status: STATUSES.KEGGED,
     description:
       "The frighteningly deep purple color of this hard soda with all the lusciousness of the concord grape is exactly what you are expecting. Its tangy, sweet, and undeniably grapalicious.",
     event_details:
       "Take a trip back in time with our Ghastly Grape Soda. This is the first in our hard soda collection. Promises a unique twist on your favorite childhood soda, now with an adult-friendly twist. Paired with games and snacks to take you back to an afternoon after school.",
+  },
+  {
+    id: 3,
+    name: "Passionfruit Cider",
+    estimated_release: new Date("July 20, 2024"),
+    estimated_abv: "6.56%",
+    colors: ["from-[#b000b5]", "to-[#bada55]"],
+    brewed_by: "Atomic10 Studios + Barely Fiction Exp",
+    available_count: "10",
+    status: STATUSES.KEGGED,
+    description:
+      "Experience the tropical allure of our Passionfruit Cider. A vibrant and tantalizing beverage that brings an exotic twist to the traditional cider. Bursting with the tangy, aromatic flavor of passionfruit, this cider offers a refreshing bite balanced by the natural sweetness of crisp apples.",
+    event_details:
+      "Come on a tropical getaway and try our Passionfruit Cider. It's just as good as it sounds and goes great with our island reggae playlist. Bring your sun kissed date, coconut scented sunscreen, and fantasize about the perfect exotic vacation.",
   },
   {
     id: 4,
