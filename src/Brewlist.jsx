@@ -143,12 +143,12 @@ const brews = [
   {
     id: 4,
     name: "Passionfruit Cider #2",
-    estimated_release: new Date("September 20, 2024"),
+    estimated_release: new Date("September 28, 2024"),
     estimated_abv: "6.56%",
     colors: ["from-[#b000b5]", "to-[#bada55]"],
     brewed_by: "Atomic10 Studios + Barely Fiction Exp",
     available_count: "10",
-    status: STATUSES.PLANNING,
+    status: STATUSES.BREWING,
     description:
       "Back by popular demand! Experience the tropical allure of our Passionfruit Cider. A vibrant and tantalizing beverage that brings an exotic twist to the traditional cider. Bursting with the tangy, aromatic flavor of passionfruit, this cider offers a refreshing bite balanced by the natural sweetness of crisp apples.",
     event_details:
@@ -157,18 +157,30 @@ const brews = [
   {
     id: 5,
     name: "Carmel Apple Cider",
-    estimated_release: new Date("October 4, 2024"),
+    estimated_release: new Date("Septempber 28, 2024"),
     estimated_abv: "6.5%",
-    colors: ["from-[#8B0000]", "to-[#FFDAB9]"],
+    colors: ["from-[#8B0000]", "to-[#90EE90]"],
     brewed_by: "Atomic10 Studios + Barely Fiction Exp",
     available_count: "10",
-    status: STATUSES.PLANNING,
+    status: STATUSES.BREWING,
     description:
       "Savor the essence of autumn with our Caramel Apple Cider. This delightful brew marries the crisp, refreshing taste of fresh apples with the rich, indulgent sweetness of caramel. Each sip offers a perfect balance of fruity and buttery notes, reminiscent of a classic fall treat. Experience the cozy warmth of the season in every glass of this nostalgic, expertly crafted cider.",
     event_details: "More details coming soon.",
   },
   {
     id: 6,
+    name: "Bootlegger's Root Beer",
+    estimated_release: new Date("September 28, 2024"),
+    estimated_abv: "6.5%",
+    colors: ["from-[#B87333]", "to-[#CD5C5C]"],
+    brewed_by: "Atomic10 Studios",
+    available_count: "10",
+    status: STATUSES.BREWING,
+    description:
+      "Indulge in our Bootlegger's Root Beer, a nostalgic treat with a grown-up twist. This creamy, smooth, and deliciously rooty brew combines the classic flavors of root beer with a surprising alcoholic kick. Crafted with real root beer extract and a hint of vanilla, it offers a rich, satisfying taste that harkens back to simpler times. Savor the complex blend of traditional root beer essence in every sip of this innovative, craft beverage.",
+  },
+  {
+    id: 7,
     name: "Dank NEIPA",
     estimated_release: new Date("October 4, 2024"),
     estimated_abv: "6.5%",
@@ -180,7 +192,7 @@ const brews = [
       "Hazy & chock full of juicy fruit flavors, our Dank NEIPA is silky-smooth with a creamy mouthfeel. Packed with Mosaic and Cascade hops this IPA is light on bitterness, super-hazy in color and heavy on delicious hop flavor.",
   },
   {
-    id: 7,
+    id: 8,
     name: "Liger's Blood Cider",
     estimated_release: new Date("October 4, 2024"),
     estimated_abv: "6%",
@@ -190,6 +202,18 @@ const brews = [
     status: STATUSES.CONCEPT,
     description:
       "A strawberry and coconut teamed up to create this Liger's Blood cider. An adult snow cone, minus the snow and the cone, but with all the flavor. Fresh whole strawberries with a hint of coconut adds a refreshing tropical twist.",
+  },
+  {
+    id: 9,
+    name: "Cranberry Mint Seltzer",
+    estimated_release: new Date("November 24, 2024"),
+    estimated_abv: "6.5%",
+    colors: ["from-[#DC143C]", "to-[#98FB98]"],
+    brewed_by: "Atomic10 Studios",
+    available_count: "10",
+    status: STATUSES.CONCEPT,
+    description:
+      "Experience a refreshing burst of holiday cheer with our Cranberry Mint Seltzer. This crisp, effervescent brew combines the tart, vibrant notes of cranberry with the cool, invigorating essence of mint. Light and bubbly, it offers a perfect balance of fruity sweetness and herbal freshness. Each sip delivers a festive sparkle. Celebrate the season with this uniquely refreshing and subtly complex seltzer.",
   },
   // Hawaiian punch cider/seltzer
   // Orange soda
