@@ -156,14 +156,15 @@ const brews = [
   },
   {
     id: 5,
-    name: "Carmel Apple Sour",
+    name: "Carmel Apple Cider",
     estimated_release: new Date("October 4, 2024"),
     estimated_abv: "6.5%",
-    colors: ["from-[#dec744]", "to-[#a2dbec]"],
+    colors: ["from-[#8B0000]", "to-[#FFDAB9]"],
     brewed_by: "Atomic10 Studios + Barely Fiction Exp",
     available_count: "10",
     status: STATUSES.PLANNING,
-    description: "More details coming soon.",
+    description:
+      "Savor the essence of autumn with our Caramel Apple Cider. This delightful brew marries the crisp, refreshing taste of fresh apples with the rich, indulgent sweetness of caramel. Each sip offers a perfect balance of fruity and buttery notes, reminiscent of a classic fall treat. Experience the cozy warmth of the season in every glass of this nostalgic, expertly crafted cider.",
     event_details: "More details coming soon.",
   },
   {
