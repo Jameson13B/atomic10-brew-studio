@@ -134,7 +134,7 @@ const brews = [
     colors: ["from-[#b000b5]", "to-[#bada55]"],
     brewed_by: "Atomic10 Studios + Barely Fiction Exp",
     available_count: "10",
-    status: STATUSES.KEGGED,
+    status: STATUSES.GONE,
     description:
       "Experience the tropical allure of our Passionfruit Cider. A vibrant and tantalizing beverage that brings an exotic twist to the traditional cider. Bursting with the tangy, aromatic flavor of passionfruit, this cider offers a refreshing bite balanced by the natural sweetness of crisp apples.",
     event_details:
@@ -142,8 +142,34 @@ const brews = [
   },
   {
     id: 4,
+    name: "Passionfruit Cider #2",
+    estimated_release: new Date("September 20, 2024"),
+    estimated_abv: "6.56%",
+    colors: ["from-[#b000b5]", "to-[#bada55]"],
+    brewed_by: "Atomic10 Studios + Barely Fiction Exp",
+    available_count: "10",
+    status: STATUSES.PLANNING,
+    description:
+      "Back by popular demand! Experience the tropical allure of our Passionfruit Cider. A vibrant and tantalizing beverage that brings an exotic twist to the traditional cider. Bursting with the tangy, aromatic flavor of passionfruit, this cider offers a refreshing bite balanced by the natural sweetness of crisp apples.",
+    event_details:
+      "If you missed it the first time, here's your chance! Come on a tropical getaway and try our Passionfruit Cider. It's just as good as it sounds and goes great with our island reggae playlist. Bring your sun kissed date, coconut scented sunscreen, and fantasize about the perfect exotic vacation.",
+  },
+  {
+    id: 5,
+    name: "Carmel Apple Sour",
+    estimated_release: new Date("October 4, 2024"),
+    estimated_abv: "6.5%",
+    colors: ["from-[#dec744]", "to-[#a2dbec]"],
+    brewed_by: "Atomic10 Studios + Barely Fiction Exp",
+    available_count: "10",
+    status: STATUSES.PLANNING,
+    description: "More details coming soon.",
+    event_details: "More details coming soon.",
+  },
+  {
+    id: 6,
     name: "Dank NEIPA",
-    estimated_release: new Date("July 4, 2024"),
+    estimated_release: new Date("October 4, 2024"),
     estimated_abv: "6.5%",
     colors: ["from-[#dec744]", "to-[#a2dbec]"],
     brewed_by: "Atomic10 Studios",
@@ -153,9 +179,9 @@ const brews = [
       "Hazy & chock full of juicy fruit flavors, our Dank NEIPA is silky-smooth with a creamy mouthfeel. Packed with Mosaic and Cascade hops this IPA is light on bitterness, super-hazy in color and heavy on delicious hop flavor.",
   },
   {
-    id: 5,
+    id: 7,
     name: "Liger's Blood Cider",
-    estimated_release: new Date("July 4, 2024"),
+    estimated_release: new Date("October 4, 2024"),
     estimated_abv: "6%",
     colors: ["from-[#ff5946]", "to-[#ffffff]"],
     brewed_by: "Atomic10 Studios",
