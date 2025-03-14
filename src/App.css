@@ -8,6 +8,12 @@
   text-align: center;
 }
 
+@media (max-width: 768px) {
+  #root {
+    padding: 0.5rem 0;
+  }
+}
+
 .logo {
   height: 10rem;
   padding: 1.5em;
