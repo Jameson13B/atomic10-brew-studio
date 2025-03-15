@@ -17,9 +17,9 @@ function App() {
       }}
     >
       <>
-        <div className="w-full h-[5%] z-10 bg-[seashell] dark:bg-[#242424] text-center">
+        <div className="w-full max-h-[10%] z-10 bg-[seashell] dark:bg-[#242424] text-center sticky top-0 py-16">
           <h1
-            className="my-16"
+            className="inline-block"
             onClick={() => setShowAdminMenu(!showAdminMenu)}
           >
             Atomic10 Brew Studio

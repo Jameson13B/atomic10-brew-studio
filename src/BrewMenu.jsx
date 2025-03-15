@@ -1,8 +1,60 @@
-import { Table } from "antd"
+import { Table, Empty } from "antd"
 
 import { brews } from "./brews"
+import { STATUSES } from "./statuses"
 
-export const BrewMenu = () => <Table columns={columns} dataSource={brews} />
+export const BrewMenu = () => (
+  <>
+    <Table
+      className="mb-4"
+      columns={columns}
+      dataSource={brews.filter((brew) =>
+        [STATUSES.CONCEPT, STATUSES.PLANNING, STATUSES.BREWING].includes(
+          brew.status
+        )
+      )}
+      locale={{
+        emptyText: (
+          <Empty
+            description="No upcoming brews"
+            image={Empty.PRESENTED_IMAGE_SIMPLE}
+          />
+        ),
+      }}
+      pagination={false}
+      size="small"
+      title={() => <h2 className="text-lg font-bold">Upcoming</h2>}
+    />
+    <Table
+      className="mb-4"
+      columns={columns.map((col, i) =>
+        i === 2 ? { ...col, title: "Release" } : col
+      )}
+      dataSource={brews.filter((brew) => brew.status === STATUSES.KEGGED)}
+      locale={{
+        emptyText: (
+          <Empty
+            description="Nothing on tap"
+            image={Empty.PRESENTED_IMAGE_SIMPLE}
+          />
+        ),
+      }}
+      pagination={false}
+      size="small"
+      title={() => <h2 className="text-lg font-bold">On Tap</h2>}
+    />
+    <Table
+      className="mb-4"
+      columns={columns.map((col, i) =>
+        i === 2 ? { ...col, title: "Release" } : col
+      )}
+      dataSource={brews.filter((brew) => brew.status === STATUSES.GONE)}
+      pagination={false}
+      size="small"
+      title={() => <h2 className="text-lg font-bold">Missed Out</h2>}
+    />
+  </>
+)
 
 const columns = [
   {
@@ -11,7 +63,7 @@ const columns = [
     key: "name",
     render: (text, record) => (
       <p
-        className={`text-[1rem] font-bold bg-gradient-to-r ${record.colors[0]} ${record.colors[1]}`}
+        className={`text-[0.8rem] md:text-[1rem] font-bold bg-gradient-to-r ${record.colors[0]} ${record.colors[1]}`}
         style={{
           WebkitBackgroundClip: "text",
           WebkitTextFillColor: "transparent",
@@ -26,7 +78,9 @@ const columns = [
     dataIndex: "status",
     key: "status",
     defaultSortOrder: "ascend",
-    render: (status) => <p className="font-bold">{status}</p>,
+    render: (status) => (
+      <p className="text-[0.8rem] md:text-[0.9rem] font-bold">{status}</p>
+    ),
     sorter: {
       compare: (a, b) => {
         if (a.status === "GONE") return 1
@@ -37,7 +91,7 @@ const columns = [
     },
   },
   {
-    title: "Estimated Release",
+    title: "Est Release",
     dataIndex: "estimated_release",
     key: "estimated_release",
     defaultSortOrder: "ascend",
@@ -48,18 +102,18 @@ const columns = [
     },
   },
   {
-    title: "Estimated ABV",
+    title: "Est ABV",
     dataIndex: "estimated_abv",
     key: "estimated_abv",
     render: (abv) => <p className="italic">{abv}</p>,
-    responsive: ["md"],
+    // responsive: ["md"],
   },
   {
     title: "Brewed By",
     dataIndex: "brewed_by",
     key: "brewed_by",
     render: (brewedBy) => <p className="italic">{brewedBy}</p>,
-    responsive: ["md"],
+    responsive: ["sm"],
   },
   {
     title: "Available Count",
@@ -68,10 +122,10 @@ const columns = [
     render: (availableCount) => <p className="font-bold">{availableCount}</p>,
     responsive: ["md"],
   },
-  {
-    title: "Description",
-    dataIndex: "description",
-    key: "description",
-    responsive: ["lg"],
-  },
+  // {
+  //   title: "Description",
+  //   dataIndex: "description",
+  //   key: "description",
+  //   // responsive: ["lg"],
+  // },
 ]
