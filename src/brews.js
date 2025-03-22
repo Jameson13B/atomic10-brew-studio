@@ -3,6 +3,7 @@ import { STATUSES } from "./statuses"
 export const brews = [
   {
     id: 1,
+    key: "peach-cobbler-seltzer",
     name: "Peach Cobbler Seltzer",
     estimated_release: new Date("June 1, 2024"),
     estimated_abv: "6.5%",
@@ -17,6 +18,7 @@ export const brews = [
   },
   {
     id: 2,
+    key: "ghastly-grape-soda",
     name: "Ghastly Grape Soda",
     estimated_release: new Date("June 29, 2024"),
     estimated_abv: "5.2%",
@@ -31,6 +33,7 @@ export const brews = [
   },
   {
     id: 3,
+    key: "passionfruit-cider",
     name: "Passionfruit Cider",
     estimated_release: new Date("July 20, 2024"),
     estimated_abv: "6.56%",
@@ -45,6 +48,7 @@ export const brews = [
   },
   {
     id: 4,
+    key: "passionfruit-cider-2",
     name: "Passionfruit Cider #2",
     estimated_release: new Date("October 11, 2024"),
     estimated_abv: "6.5%",
@@ -59,6 +63,7 @@ export const brews = [
   },
   {
     id: 5,
+    key: "carmel-apple-cider",
     name: "Carmel Apple Cider",
     estimated_release: new Date("October 11, 2024"),
     estimated_abv: "6.4%",
@@ -72,6 +77,7 @@ export const brews = [
   },
   {
     id: 6,
+    key: "bootleggers-root-beer",
     name: "Bootlegger's Root Beer",
     estimated_release: new Date("April 12, 2025"),
     estimated_abv: "5.5%",
@@ -84,6 +90,7 @@ export const brews = [
   },
   {
     id: 7,
+    key: "dank-neipa",
     name: "Dank NEIPA",
     estimated_release: new Date("April 13, 2025"),
     estimated_abv: "6.5%",
@@ -96,6 +103,7 @@ export const brews = [
   },
   {
     id: 8,
+    key: "spiked-sunset-soda",
     name: "Spiked Sunset Soda",
     estimated_release: new Date("May 16, 2025"),
     estimated_abv: "5.5%",
@@ -104,10 +112,11 @@ export const brews = [
     available_count: "10",
     status: STATUSES.CONCEPT,
     description:
-      "A refreshing blend of orange and pineapple, this hard soda is a perfect summer drink. It's light and bubbly, with a hint of sweetness from the orange and a tangy kick from the pineapple. You will want to sip this all summer long.",
+      "A refreshing blend of orange and pineapple, this hard soda is a perfect summer drink. It's light and bubbly, with a hint of sweetness from the orange and a tangy kick from the pineapple. This one is for a future pool party for sure. ",
   },
   {
     id: 9,
+    key: "ligers-blood-cider",
     name: "Liger's Blood Cider",
     estimated_release: new Date("May 16, 2025"),
     estimated_abv: "6.5%",
@@ -120,6 +129,7 @@ export const brews = [
   },
   {
     id: 10,
+    key: "cranberry-mint-seltzer",
     name: "Cranberry Mint Seltzer",
     estimated_release: new Date("May 30, 2025"),
     estimated_abv: "5.5%",

@@ -13,6 +13,22 @@ export const BrewMenu = () => (
           brew.status
         )
       )}
+      expandable={{
+        expandRowByClick: true,
+        expandedRowRender: (record) => (
+          <>
+            <p style={{ margin: "0 0 0 36px", maxWidth: "768px" }}>
+              <em>{record.description}</em>
+              <br />
+              <br />
+            </p>
+            <p className="text-center sm:text-left text-md font-bold sm:ml-[65px] mb-4">
+              Brewed by: {record.brewed_by}
+            </p>
+          </>
+        ),
+        fixed: "right",
+      }}
       locale={{
         emptyText: (
           <Empty
@@ -31,6 +47,15 @@ export const BrewMenu = () => (
         i === 2 ? { ...col, title: "Release" } : col
       )}
       dataSource={brews.filter((brew) => brew.status === STATUSES.KEGGED)}
+      expandable={{
+        expandRowByClick: true,
+        expandedRowRender: (record) => (
+          <p style={{ margin: "0 0 0 48px", maxWidth: "768px" }}>
+            <em>{record.description}</em>
+          </p>
+        ),
+        fixed: "right",
+      }}
       locale={{
         emptyText: (
           <Empty
@@ -49,6 +74,15 @@ export const BrewMenu = () => (
         i === 2 ? { ...col, title: "Release" } : col
       )}
       dataSource={brews.filter((brew) => brew.status === STATUSES.GONE)}
+      expandable={{
+        expandRowByClick: true,
+        expandedRowRender: (record) => (
+          <p style={{ margin: "0 0 0 48px", maxWidth: "768px" }}>
+            <em>{record.description}</em>
+          </p>
+        ),
+        fixed: "right",
+      }}
       pagination={false}
       size="small"
       title={() => <h2 className="text-lg font-bold">Missed Out</h2>}
@@ -106,7 +140,6 @@ const columns = [
     dataIndex: "estimated_abv",
     key: "estimated_abv",
     render: (abv) => <p className="italic">{abv}</p>,
-    // responsive: ["md"],
   },
   {
     title: "Brewed By",
