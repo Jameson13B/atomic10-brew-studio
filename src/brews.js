@@ -84,9 +84,22 @@ export const brews = [
     colors: ["from-[#B87333]", "to-[#CD5C5C]"],
     brewed_by: "Atomic10 Studios + Barely Fiction Exp",
     available_count: "20",
-    status: STATUSES.PLANNING,
+    status: STATUSES.BREWING,
     description:
       "Indulge in our Bootlegger's Root Beer, a nostalgic treat with a grown-up twist. This creamy, smooth, and deliciously rooty brew combines the classic flavors of root beer with a surprising alcoholic kick. Crafted with real root beer extract and a hint of vanilla, it offers a rich, satisfying taste that harkens back to simpler times. Savor the complex blend of traditional root beer essence in every sip of this innovative, craft beverage.",
+  },
+  {
+    id: 9,
+    key: "ligers-blood-cider",
+    name: "Liger's Blood Cider",
+    estimated_release: new Date("May 16, 2025"),
+    estimated_abv: "6.5%",
+    colors: ["from-[#ff5946]", "to-[#ffffff]"],
+    brewed_by: "Atomic10 Studios",
+    available_count: "10",
+    status: STATUSES.BREWING,
+    description:
+      "A strawberry and coconut teamed up to create this Liger's Blood cider. An adult snow cone, minus the snow and the cone, but with all the flavor. Fresh whole strawberries with a hint of coconut adds a refreshing tropical twist.",
   },
   {
     id: 7,
@@ -113,19 +126,6 @@ export const brews = [
     status: STATUSES.CONCEPT,
     description:
       "A refreshing blend of orange and pineapple, this hard soda is a perfect summer drink. It's light and bubbly, with a hint of sweetness from the orange and a tangy kick from the pineapple. This one is for a future pool party for sure. ",
-  },
-  {
-    id: 9,
-    key: "ligers-blood-cider",
-    name: "Liger's Blood Cider",
-    estimated_release: new Date("May 16, 2025"),
-    estimated_abv: "6.5%",
-    colors: ["from-[#ff5946]", "to-[#ffffff]"],
-    brewed_by: "Atomic10 Studios",
-    available_count: "10",
-    status: STATUSES.CONCEPT,
-    description:
-      "A strawberry and coconut teamed up to create this Liger's Blood cider. An adult snow cone, minus the snow and the cone, but with all the flavor. Fresh whole strawberries with a hint of coconut adds a refreshing tropical twist.",
   },
   {
     id: 10,

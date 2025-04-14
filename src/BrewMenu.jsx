@@ -25,6 +25,10 @@ export const BrewMenu = () => (
             <p className="text-center sm:text-left text-md font-bold sm:ml-[65px] mb-4">
               Brewed by: {record.brewed_by}
             </p>
+            <p className="text-center sm:text-left text-md font-bold sm:ml-[65px] mb-4">
+              {record.available_count} pints available at {record.estimated_abv}{" "}
+              ABV.
+            </p>
           </>
         ),
         fixed: "right",
@@ -135,12 +139,12 @@ const columns = [
       multiplyer: 2,
     },
   },
-  {
-    title: "Est ABV",
-    dataIndex: "estimated_abv",
-    key: "estimated_abv",
-    render: (abv) => <p className="italic">{abv}</p>,
-  },
+  // {
+  //   title: "Est ABV",
+  //   dataIndex: "estimated_abv",
+  //   key: "estimated_abv",
+  //   render: (abv) => <p className="italic">{abv}</p>,
+  // },
   {
     title: "Brewed By",
     dataIndex: "brewed_by",
@@ -148,13 +152,13 @@ const columns = [
     render: (brewedBy) => <p className="italic">{brewedBy}</p>,
     responsive: ["sm"],
   },
-  {
-    title: "Available Count",
-    dataIndex: "available_count",
-    key: "available_count",
-    render: (availableCount) => <p className="font-bold">{availableCount}</p>,
-    responsive: ["md"],
-  },
+  // {
+  //   title: "Available Count",
+  //   dataIndex: "available_count",
+  //   key: "available_count",
+  //   render: (availableCount) => <p className="font-bold">{availableCount}</p>,
+  //   responsive: ["md"],
+  // },
   // {
   //   title: "Description",
   //   dataIndex: "description",
