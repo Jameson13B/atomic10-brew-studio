@@ -7,11 +7,11 @@ export const BrewMenu = () => (
   <>
     <Table
       className="mb-4"
-      columns={columns}
+      columns={columns.map((col, i) =>
+        i === 2 ? { ...col, title: "Release" } : col
+      )}
       dataSource={brews.filter((brew) =>
-        [STATUSES.CONCEPT, STATUSES.PLANNING, STATUSES.BREWING].includes(
-          brew.status
-        )
+        [STATUSES.KEGGED, STATUSES.BREWING].includes(brew.status)
       )}
       expandable={{
         expandRowByClick: true,
@@ -23,11 +23,49 @@ export const BrewMenu = () => (
               <br />
             </p>
             <p className="text-center sm:text-left text-md font-bold sm:ml-[65px] mb-4">
+              {record.available_count} pints available at {record.estimated_abv}{" "}
+              ABV.
+            </p>
+            <p className="text-center sm:text-left text-md font-bold sm:ml-[65px] mb-4">
               Brewed by: {record.brewed_by}
+            </p>
+          </>
+        ),
+        fixed: "right",
+      }}
+      locale={{
+        emptyText: (
+          <Empty
+            description="Nothing on tap"
+            image={Empty.PRESENTED_IMAGE_SIMPLE}
+          />
+        ),
+      }}
+      pagination={false}
+      size="small"
+      title={() => <h2 className="text-lg font-bold">Kegged and Brewing</h2>}
+    />
+    <Table
+      className="mb-4"
+      columns={columns}
+      dataSource={brews.filter((brew) =>
+        [STATUSES.CONCEPT, STATUSES.PLANNING].includes(brew.status)
+      )}
+      expandable={{
+        expandRowByClick: true,
+        expandedRowRender: (record) => (
+          <>
+            <p style={{ margin: "0 0 0 36px", maxWidth: "768px" }}>
+              <em>{record.description}</em>
+              <br />
+              <br />
             </p>
             <p className="text-center sm:text-left text-md font-bold sm:ml-[65px] mb-4">
               {record.available_count} pints available at {record.estimated_abv}{" "}
               ABV.
+            </p>
+            <p className="text-center sm:text-left text-md font-bold sm:ml-[65px] mb-4">
+              Brewed by: {record.brewed_by}
             </p>
           </>
         ),
@@ -46,34 +84,7 @@ export const BrewMenu = () => (
       title={() => <h2 className="text-lg font-bold">Upcoming</h2>}
     />
     <Table
-      className="mb-4"
-      columns={columns.map((col, i) =>
-        i === 2 ? { ...col, title: "Release" } : col
-      )}
-      dataSource={brews.filter((brew) => brew.status === STATUSES.KEGGED)}
-      expandable={{
-        expandRowByClick: true,
-        expandedRowRender: (record) => (
-          <p style={{ margin: "0 0 0 48px", maxWidth: "768px" }}>
-            <em>{record.description}</em>
-          </p>
-        ),
-        fixed: "right",
-      }}
-      locale={{
-        emptyText: (
-          <Empty
-            description="Nothing on tap"
-            image={Empty.PRESENTED_IMAGE_SIMPLE}
-          />
-        ),
-      }}
-      pagination={false}
-      size="small"
-      title={() => <h2 className="text-lg font-bold">On Tap</h2>}
-    />
-    <Table
-      className="mb-4"
+      className="mb-4 pb-8"
       columns={columns.map((col, i) =>
         i === 2 ? { ...col, title: "Release" } : col
       )}
@@ -81,9 +92,20 @@ export const BrewMenu = () => (
       expandable={{
         expandRowByClick: true,
         expandedRowRender: (record) => (
-          <p style={{ margin: "0 0 0 48px", maxWidth: "768px" }}>
-            <em>{record.description}</em>
-          </p>
+          <>
+            <p style={{ margin: "0 0 0 36px", maxWidth: "768px" }}>
+              <em>{record.description}</em>
+              <br />
+              <br />
+            </p>
+            <p className="text-center sm:text-left text-md font-bold sm:ml-[65px] mb-4">
+              {record.available_count} pints available at {record.estimated_abv}{" "}
+              ABV.
+            </p>
+            <p className="text-center sm:text-left text-md font-bold sm:ml-[65px] mb-4">
+              Brewed by: {record.brewed_by}
+            </p>
+          </>
         ),
         fixed: "right",
       }}

@@ -102,6 +102,45 @@ export const brews = [
       "A strawberry and coconut teamed up to create this Liger's Blood cider. An adult snow cone, minus the snow and the cone, but with all the flavor. Fresh whole strawberries with a hint of coconut adds a refreshing tropical twist.",
   },
   {
+    id: 10,
+    key: "mango-sticky-rice-cider",
+    name: "Mango Sticky Rice Cider",
+    estimated_release: new Date("May 2, 2025"),
+    estimated_abv: "6.5%",
+    colors: ["from-[#FB1]", "to-[#FED]"],
+    brewed_by: "Atomic10 Studios",
+    available_count: "10",
+    status: STATUSES.PLANNING,
+    description:
+      "Fruity dessert-style cider with fresh mango, coconut, vanilla, and a smooth creamy body. This brew will make you feel like you are enjoying the best dessert in Thailand.",
+  },
+  {
+    id: 11,
+    key: "starflower-cider",
+    name: "Starflower Cider",
+    estimated_release: new Date("May 2, 2025"),
+    estimated_abv: "6%",
+    colors: ["from-[#1CE]", "to-[#0FF1CE]"],
+    brewed_by: "Atomic10 Studios",
+    available_count: "10",
+    status: STATUSES.PLANNING,
+    description:
+      "A tropical-inspired, dreamy, blue-hued cider. Balanced, clean, and surreal—like sipping an electric blue dream. Do not miss out on this special brew that is sure to be one of a kind.",
+  },
+  {
+    id: 12,
+    key: "moon-milk-cider",
+    name: "Moon Milk Cider",
+    estimated_release: new Date("May 2, 2025"),
+    estimated_abv: "6%",
+    colors: ["from-[#1CE]", "to-[#DE1]"],
+    brewed_by: "Atomic10 Studios",
+    available_count: "10",
+    status: STATUSES.PLANNING,
+    description:
+      "Smooth, light-bodied cider with a soft vanilla-banana finish. Subtle sweetness with a glowing, cosmic blue tint. Like drinking starlight and bedtime stories in a glass. This one is cosmic, cozy, and totally Atomic10.",
+  },
+  {
     id: 7,
     key: "dank-neipa",
     name: "Dank NEIPA",
@@ -110,7 +149,7 @@ export const brews = [
     colors: ["from-[#dec744]", "to-[#a2dbec]"],
     brewed_by: "Atomic10 Studios",
     available_count: "10",
-    status: STATUSES.PLANNING,
+    status: STATUSES.CONCEPT,
     description:
       "Hazy & chock full of juicy fruit flavors, our Dank NEIPA is silky-smooth with a creamy mouthfeel. Packed with Mosaic and Cascade hops this IPA is light on bitterness, super-hazy in color and heavy on delicious hop flavor.",
   },
@@ -127,19 +166,19 @@ export const brews = [
     description:
       "A refreshing blend of orange and pineapple, this hard soda is a perfect summer drink. It's light and bubbly, with a hint of sweetness from the orange and a tangy kick from the pineapple. This one is for a future pool party for sure. ",
   },
-  {
-    id: 10,
-    key: "cranberry-mint-seltzer",
-    name: "Cranberry Mint Seltzer",
-    estimated_release: new Date("May 30, 2025"),
-    estimated_abv: "5.5%",
-    colors: ["from-[#DC143C]", "to-[#98FB98]"],
-    brewed_by: "Atomic10 Studios",
-    available_count: "10",
-    status: STATUSES.CONCEPT,
-    description:
-      "Experience a refreshing burst of holiday cheer with our Cranberry Mint Seltzer. This crisp, effervescent brew combines the tart, vibrant notes of cranberry with the cool, invigorating essence of mint. Light and bubbly, it offers a perfect balance of fruity sweetness and herbal freshness. Each sip delivers a festive sparkle. Celebrate the season with this uniquely refreshing and subtly complex seltzer.",
-  },
+  // {
+  //   id: 10,
+  //   key: "cranberry-mint-seltzer",
+  //   name: "Cranberry Mint Seltzer",
+  //   estimated_release: new Date("May 30, 2025"),
+  //   estimated_abv: "5.5%",
+  //   colors: ["from-[#DC143C]", "to-[#98FB98]"],
+  //   brewed_by: "Atomic10 Studios",
+  //   available_count: "10",
+  //   status: STATUSES.CONCEPT,
+  //   description:
+  //     "Experience a refreshing burst of holiday cheer with our Cranberry Mint Seltzer. This crisp, effervescent brew combines the tart, vibrant notes of cranberry with the cool, invigorating essence of mint. Light and bubbly, it offers a perfect balance of fruity sweetness and herbal freshness. Each sip delivers a festive sparkle. Celebrate the season with this uniquely refreshing and subtly complex seltzer.",
+  // },
   // Hawaiian punch cider/seltzer
   // Orange soda
   // Ruby red grapefruit soda
