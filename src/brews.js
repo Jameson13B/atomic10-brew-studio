@@ -123,7 +123,7 @@ export const brews = [
     colors: ["from-[#1CE]", "to-[#0FF1CE]"],
     brewed_by: "Atomic10 Studios",
     available_count: "10",
-    status: STATUSES.PLANNING,
+    status: STATUSES.BREWING,
     description:
       "A tropical-inspired, dreamy, blue-hued cider. Balanced, clean, and surreal—like sipping an electric blue dream. Do not miss out on this special brew that is sure to be one of a kind.",
   },
@@ -131,7 +131,7 @@ export const brews = [
     id: 12,
     key: "moon-milk-cider",
     name: "Moon Milk Cider",
-    estimated_release: new Date("May 2, 2025"),
+    estimated_release: new Date("May 4, 2025"),
     estimated_abv: "6%",
     colors: ["from-[#1CE]", "to-[#DE1]"],
     brewed_by: "Atomic10 Studios",
