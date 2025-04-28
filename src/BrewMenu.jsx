@@ -1,120 +1,145 @@
 import { Table, Empty } from "antd"
 
-import { brews } from "./brews"
+// import { brews } from "./brews"
 import { STATUSES } from "./statuses"
+import { useEffect, useState } from "react"
+import { db } from "./firebase"
+import { getDocs, collection } from "firebase/firestore"
 
-export const BrewMenu = () => (
-  <>
-    <Table
-      className="mb-4"
-      columns={columns.map((col, i) =>
-        i === 2 ? { ...col, title: "Release" } : col
-      )}
-      dataSource={brews.filter((brew) =>
-        [STATUSES.KEGGED, STATUSES.BREWING].includes(brew.status)
-      )}
-      expandable={{
-        expandRowByClick: true,
-        expandedRowRender: (record) => (
-          <>
-            <p style={{ margin: "0 0 0 36px", maxWidth: "768px" }}>
-              <em>{record.description}</em>
-              <br />
-              <br />
-            </p>
-            <p className="text-center sm:text-left text-md font-bold sm:ml-[65px] mb-4">
-              {record.available_count} pints available at {record.estimated_abv}{" "}
-              ABV.
-            </p>
-            <p className="text-center sm:text-left text-md font-bold sm:ml-[65px] mb-4">
-              Brewed by: {record.brewed_by}
-            </p>
-          </>
-        ),
-        fixed: "right",
-      }}
-      locale={{
-        emptyText: (
-          <Empty
-            description="Nothing on tap"
-            image={Empty.PRESENTED_IMAGE_SIMPLE}
-          />
-        ),
-      }}
-      pagination={false}
-      size="small"
-      title={() => <h2 className="text-lg font-bold">Kegged and Brewing</h2>}
-    />
-    <Table
-      className="mb-4"
-      columns={columns}
-      dataSource={brews.filter((brew) =>
-        [STATUSES.CONCEPT, STATUSES.PLANNING].includes(brew.status)
-      )}
-      expandable={{
-        expandRowByClick: true,
-        expandedRowRender: (record) => (
-          <>
-            <p style={{ margin: "0 0 0 36px", maxWidth: "768px" }}>
-              <em>{record.description}</em>
-              <br />
-              <br />
-            </p>
-            <p className="text-center sm:text-left text-md font-bold sm:ml-[65px] mb-4">
-              {record.available_count} pints available at {record.estimated_abv}{" "}
-              ABV.
-            </p>
-            <p className="text-center sm:text-left text-md font-bold sm:ml-[65px] mb-4">
-              Brewed by: {record.brewed_by}
-            </p>
-          </>
-        ),
-        fixed: "right",
-      }}
-      locale={{
-        emptyText: (
-          <Empty
-            description="No upcoming brews"
-            image={Empty.PRESENTED_IMAGE_SIMPLE}
-          />
-        ),
-      }}
-      pagination={false}
-      size="small"
-      title={() => <h2 className="text-lg font-bold">Upcoming</h2>}
-    />
-    <Table
-      className="mb-4 pb-8"
-      columns={columns.map((col, i) =>
-        i === 2 ? { ...col, title: "Release" } : col
-      )}
-      dataSource={brews.filter((brew) => brew.status === STATUSES.GONE)}
-      expandable={{
-        expandRowByClick: true,
-        expandedRowRender: (record) => (
-          <>
-            <p style={{ margin: "0 0 0 36px", maxWidth: "768px" }}>
-              <em>{record.description}</em>
-              <br />
-              <br />
-            </p>
-            <p className="text-center sm:text-left text-md font-bold sm:ml-[65px] mb-4">
-              {record.available_count} pints available at {record.estimated_abv}{" "}
-              ABV.
-            </p>
-            <p className="text-center sm:text-left text-md font-bold sm:ml-[65px] mb-4">
-              Brewed by: {record.brewed_by}
-            </p>
-          </>
-        ),
-        fixed: "right",
-      }}
-      pagination={false}
-      size="small"
-      title={() => <h2 className="text-lg font-bold">Missed Out</h2>}
-    />
-  </>
-)
+export const BrewMenu = () => {
+  const [brews, setBrews] = useState([])
+
+  useEffect(() => {
+    const fetchBrews = async () => {
+      const querySnapshot = await getDocs(collection(db, "brew-master"))
+      const brews = []
+
+      querySnapshot.forEach((doc) =>
+        brews.push({ ...doc.data(), id: doc.id, key: doc.id })
+      )
+
+      setBrews(brews)
+    }
+
+    fetchBrews()
+  }, [])
+
+  if (brews.length === 0) return <p>Loading...</p>
+  return (
+    <>
+      <Table
+        className="mb-4"
+        columns={columns.map((col, i) =>
+          i === 2 ? { ...col, title: "Release" } : col
+        )}
+        dataSource={brews
+          .filter((brew) =>
+            [STATUSES.KEGGED, STATUSES.BREWING].includes(brew.status)
+          )
+          .sort((a, b) => a.estimated_release - b.estimated_release)}
+        expandable={{
+          expandRowByClick: true,
+          expandedRowRender: (record) => (
+            <>
+              <p style={{ margin: "0 0 0 36px", maxWidth: "768px" }}>
+                <em>{record.description}</em>
+                <br />
+                <br />
+              </p>
+              <p className="text-center sm:text-left text-md font-bold sm:ml-[65px] mb-4">
+                {record.available_count} pints available at{" "}
+                {record.estimated_abv} ABV.
+              </p>
+              <p className="text-center sm:text-left text-md font-bold sm:ml-[65px] mb-4">
+                Brewed by: {record.brewed_by}
+              </p>
+            </>
+          ),
+          fixed: "right",
+        }}
+        locale={{
+          emptyText: (
+            <Empty
+              description="Nothing on tap"
+              image={Empty.PRESENTED_IMAGE_SIMPLE}
+            />
+          ),
+        }}
+        pagination={false}
+        size="small"
+        title={() => <h2 className="text-lg font-bold">Kegged and Brewing</h2>}
+      />
+      <Table
+        className="mb-4"
+        columns={columns}
+        dataSource={brews.filter((brew) =>
+          [STATUSES.CONCEPT, STATUSES.PLANNING].includes(brew.status)
+        )}
+        expandable={{
+          expandRowByClick: true,
+          expandedRowRender: (record) => (
+            <>
+              <p style={{ margin: "0 0 0 36px", maxWidth: "768px" }}>
+                <em>{record.description}</em>
+                <br />
+                <br />
+              </p>
+              <p className="text-center sm:text-left text-md font-bold sm:ml-[65px] mb-4">
+                {record.available_count} pints available at{" "}
+                {record.estimated_abv} ABV.
+              </p>
+              <p className="text-center sm:text-left text-md font-bold sm:ml-[65px] mb-4">
+                Brewed by: {record.brewed_by}
+              </p>
+            </>
+          ),
+          fixed: "right",
+        }}
+        locale={{
+          emptyText: (
+            <Empty
+              description="No upcoming brews"
+              image={Empty.PRESENTED_IMAGE_SIMPLE}
+            />
+          ),
+        }}
+        pagination={false}
+        size="small"
+        title={() => <h2 className="text-lg font-bold">Upcoming</h2>}
+      />
+      <Table
+        className="mb-4 pb-8"
+        columns={columns.map((col, i) =>
+          i === 2 ? { ...col, title: "Release" } : col
+        )}
+        dataSource={brews.filter((brew) => brew.status === STATUSES.GONE)}
+        expandable={{
+          expandRowByClick: true,
+          expandedRowRender: (record) => (
+            <>
+              <p style={{ margin: "0 0 0 36px", maxWidth: "768px" }}>
+                <em>{record.description}</em>
+                <br />
+                <br />
+              </p>
+              <p className="text-center sm:text-left text-md font-bold sm:ml-[65px] mb-4">
+                {record.available_count} pints available at{" "}
+                {record.estimated_abv} ABV.
+              </p>
+              <p className="text-center sm:text-left text-md font-bold sm:ml-[65px] mb-4">
+                Brewed by: {record.brewed_by}
+              </p>
+            </>
+          ),
+          fixed: "right",
+        }}
+        pagination={false}
+        size="small"
+        title={() => <h2 className="text-lg font-bold">Missed Out</h2>}
+      />
+    </>
+  )
+}
 
 const columns = [
   {
@@ -155,7 +180,7 @@ const columns = [
     dataIndex: "estimated_release",
     key: "estimated_release",
     defaultSortOrder: "ascend",
-    render: (date) => date.toLocaleDateString(),
+    render: (date) => date?.toDate().toLocaleDateString(),
     sorter: {
       compare: (a, b) => a.estimated_release - b.estimated_release,
       multiplyer: 2,
