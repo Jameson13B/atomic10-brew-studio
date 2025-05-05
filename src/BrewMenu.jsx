@@ -36,24 +36,38 @@ export const BrewMenu = () => {
           .filter((brew) =>
             [STATUSES.KEGGED, STATUSES.BREWING].includes(brew.status)
           )
-          .sort((a, b) => a.estimated_release - b.estimated_release)}
+          .sort((a, b) => {
+            if (a.status === STATUSES.KEGGED && b.status !== STATUSES.KEGGED)
+              return -1
+            if (a.status !== STATUSES.KEGGED && b.status === STATUSES.KEGGED)
+              return 1
+            return a.estimated_release - b.estimated_release
+          })}
         expandable={{
           expandRowByClick: true,
           expandedRowRender: (record) => (
-            <>
-              <p style={{ margin: "0 0 0 36px", maxWidth: "768px" }}>
+            <div className="flex justify-between gap-4 sm:flex-row flex-col">
+              <p
+                style={{
+                  margin: "0 0 0 36px",
+                  maxWidth: "768px",
+                  width: "75%",
+                }}
+              >
                 <em>{record.description}</em>
                 <br />
+              </p>
+              <div className="flex sm:align-center flex-col justify-between mr-[36px] max-w-[100%] sm:max-w-[25%] w-full">
+                <p className="text-center sm:text-left text-md font-bold">
+                  {record.available_count} servings available at{" "}
+                  {record.estimated_abv} ABV.
+                </p>
                 <br />
-              </p>
-              <p className="text-center sm:text-left text-md font-bold sm:ml-[65px] mb-4">
-                {record.available_count} pints available at{" "}
-                {record.estimated_abv} ABV.
-              </p>
-              <p className="text-center sm:text-left text-md font-bold sm:ml-[65px] mb-4">
-                Brewed by: {record.brewed_by}
-              </p>
-            </>
+                <p className="text-center sm:text-left text-md font-bold">
+                  Brewed by: {record.brewed_by}
+                </p>
+              </div>
+            </div>
           ),
           fixed: "right",
         }}
@@ -72,26 +86,48 @@ export const BrewMenu = () => {
       <Table
         className="mb-4"
         columns={columns}
-        dataSource={brews.filter((brew) =>
-          [STATUSES.CONCEPT, STATUSES.PLANNING].includes(brew.status)
-        )}
+        dataSource={brews
+          .filter((brew) =>
+            [STATUSES.CONCEPT, STATUSES.PLANNING].includes(brew.status)
+          )
+          .sort((a, b) => {
+            if (
+              a.status === STATUSES.PLANNING &&
+              b.status !== STATUSES.PLANNING
+            )
+              return -1
+            if (
+              a.status !== STATUSES.PLANNING &&
+              b.status === STATUSES.PLANNING
+            )
+              return 1
+            return a.estimated_release - b.estimated_release
+          })}
         expandable={{
           expandRowByClick: true,
           expandedRowRender: (record) => (
-            <>
-              <p style={{ margin: "0 0 0 36px", maxWidth: "768px" }}>
+            <div className="flex justify-between gap-4 sm:flex-row flex-col">
+              <p
+                style={{
+                  margin: "0 0 0 36px",
+                  maxWidth: "768px",
+                  width: "75%",
+                }}
+              >
                 <em>{record.description}</em>
                 <br />
+              </p>
+              <div className="flex sm:align-center flex-col justify-between mr-[36px] max-w-[100%] sm:max-w-[25%] w-full">
+                <p className="text-center sm:text-left text-md font-bold">
+                  {record.available_count} servings available at{" "}
+                  {record.estimated_abv} ABV.
+                </p>
                 <br />
-              </p>
-              <p className="text-center sm:text-left text-md font-bold sm:ml-[65px] mb-4">
-                {record.available_count} pints available at{" "}
-                {record.estimated_abv} ABV.
-              </p>
-              <p className="text-center sm:text-left text-md font-bold sm:ml-[65px] mb-4">
-                Brewed by: {record.brewed_by}
-              </p>
-            </>
+                <p className="text-center sm:text-left text-md font-bold">
+                  Brewed by: {record.brewed_by}
+                </p>
+              </div>
+            </div>
           ),
           fixed: "right",
         }}
@@ -116,20 +152,28 @@ export const BrewMenu = () => {
         expandable={{
           expandRowByClick: true,
           expandedRowRender: (record) => (
-            <>
-              <p style={{ margin: "0 0 0 36px", maxWidth: "768px" }}>
+            <div className="flex justify-between gap-4 sm:flex-row flex-col">
+              <p
+                style={{
+                  margin: "0 0 0 36px",
+                  maxWidth: "768px",
+                  width: "75%",
+                }}
+              >
                 <em>{record.description}</em>
                 <br />
+              </p>
+              <div className="flex sm:align-center flex-col justify-between mr-[36px] max-w-[100%] sm:max-w-[25%] w-full">
+                <p className="text-center sm:text-left text-md font-bold">
+                  {record.available_count} servings available at{" "}
+                  {record.estimated_abv} ABV.
+                </p>
                 <br />
-              </p>
-              <p className="text-center sm:text-left text-md font-bold sm:ml-[65px] mb-4">
-                {record.available_count} pints available at{" "}
-                {record.estimated_abv} ABV.
-              </p>
-              <p className="text-center sm:text-left text-md font-bold sm:ml-[65px] mb-4">
-                Brewed by: {record.brewed_by}
-              </p>
-            </>
+                <p className="text-center sm:text-left text-md font-bold">
+                  Brewed by: {record.brewed_by}
+                </p>
+              </div>
+            </div>
           ),
           fixed: "right",
         }}
@@ -148,10 +192,11 @@ const columns = [
     key: "name",
     render: (text, record) => (
       <p
-        className={`text-[0.8rem] md:text-[1rem] font-bold bg-gradient-to-r ${record.colors[0]} ${record.colors[1]}`}
+        className={`text-[0.8rem] md:text-[1rem] font-bold`}
         style={{
           WebkitBackgroundClip: "text",
           WebkitTextFillColor: "transparent",
+          backgroundImage: `linear-gradient(to right, ${record.colors[0]}, ${record.colors[1]})`,
         }}
       >
         {text.toUpperCase()}
