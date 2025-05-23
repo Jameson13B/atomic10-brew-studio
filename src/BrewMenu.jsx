@@ -34,7 +34,7 @@ export const BrewMenu = () => {
         )}
         dataSource={brews
           .filter((brew) =>
-            [STATUSES.KEGGED, STATUSES.BREWING].includes(brew.status)
+            [STATUSES.KEGGED, STATUSES.CONDITIONING].includes(brew.status)
           )
           .sort((a, b) => {
             if (a.status === STATUSES.KEGGED && b.status !== STATUSES.KEGGED)
@@ -81,14 +81,18 @@ export const BrewMenu = () => {
         }}
         pagination={false}
         size="small"
-        title={() => <h2 className="text-lg font-bold">Kegged and Brewing</h2>}
+        title={() => (
+          <h2 className="text-lg font-bold">Kegged and Conditioning</h2>
+        )}
       />
       <Table
         className="mb-4"
         columns={columns}
         dataSource={brews
           .filter((brew) =>
-            [STATUSES.CONCEPT, STATUSES.PLANNING].includes(brew.status)
+            [STATUSES.CONCEPT, STATUSES.PLANNING, STATUSES.BREWING].includes(
+              brew.status
+            )
           )
           .sort((a, b) => {
             if (
@@ -141,14 +145,18 @@ export const BrewMenu = () => {
         }}
         pagination={false}
         size="small"
-        title={() => <h2 className="text-lg font-bold">Upcoming</h2>}
+        title={() => (
+          <h2 className="text-lg font-bold">Brewing and Upcoming</h2>
+        )}
       />
       <Table
         className="mb-4 pb-8"
         columns={columns.map((col, i) =>
           i === 2 ? { ...col, title: "Release" } : col
         )}
-        dataSource={brews.filter((brew) => brew.status === STATUSES.GONE)}
+        dataSource={brews
+          .filter((brew) => brew.status === STATUSES.GONE)
+          .sort((a, b) => b.estimated_release - a.estimated_release)}
         expandable={{
           expandRowByClick: true,
           expandedRowRender: (record) => (
